@@ -1,0 +1,151 @@
+body {
+        font-family: sans-serif;
+        margin: 0;
+}
+
+/* header {
+    background-color: #f0f0f0; /* Example background color 
+    padding: 10px;
+} */
+
+.nav-bar {
+    background-color: rgb(212 212 200);
+    color: #000;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+}
+
+.nav-brand img {
+    /*max-height: 50px; /* Adjust as needed */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+}
+
+.nav-toggle {
+    display: block; /* Show on smaller screens */
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.nav-menu {
+    display: none; /* Hide by default on smaller screens */
+    flex-direction: column; /* Stack menu items vertically */
+    position: absolute;  /* Needed for positioning */
+    top: 60px; /* Adjust as needed */
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0; /* Match header background */
+    text-align: center; /* Center text within the menu */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a subtle shadow */
+}
+
+.icon, .nav-menu-icon span { /* Style the "hamburger" icon */
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333; /* Example color */
+    margin: 5px 0;
+}
+
+.nav-bar ul {
+    display: flex; 
+}
+
+.nav-bar ul {
+    list-style: none;
+}
+
+
+
+
+@media only screen and (max-width: 769) {
+    nav-menu {
+        display: none;
+    }
+}
+
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    padding: 10px 0; /* Add some vertical padding */
+    border-bottom: 1px solid #ddd; /* Add a separator line */
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block; /* Make links fill the list item width */
+}
+.nav-menu a:hover{
+    background-color: #ddd;
+}
+
+.nav-menu.active { /* Show the menu when active */
+    display: flex;
+}
+
+/* Hide the default hamburger icon on larger screens*/
+.nav-menu-icon {
+    display: none;
+}
+
+/* Show the menu inline on larger screens */
+@media (min-width: 768px) { /* Adjust breakpoint as needed */
+    .nav-toggle {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: row; /* Arrange items horizontally */
+        position: static; /* Remove absolute positioning */
+        top: auto;
+        left: auto;
+        width: auto;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .nav-menu li{
+        border-bottom: none;
+    }
+
+    .nav-menu ul {
+        display: flex; /* Make list items arrange horizontally */
+    }
+
+    .nav-menu li {
+        padding: 0 15px; /* Add horizontal padding */
+    }
+    .nav-menu a{
+        display: inline;
+        padding: 10px;
+    }
+    .nav-menu-icon {
+        display: block;
+    }
+}
+section{
+    padding: 20px;
+}
+footer{
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
