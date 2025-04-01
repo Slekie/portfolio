@@ -4,40 +4,88 @@
     <title>Mike's Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The portfolion shows my skills, projects and certification">
-    <link rel="stylesheet" href="styles.css">
+    <link type="text/css" rel="stylesheet" href="shared.css">
+    <link type="text/css" rel="stylesheet" href="main.css">
 </head>
 <body>
-    <header>
-        <nav class="nav-bar">
-            <div class="nav-brand"><img src="images/mike.jpg" alt="Mike's photo"></div>
+    <header class="main-header">
+        <div class="brand-container">
+            <a class="brand-container__items" href="packages/index.html">
+                <div class="nav-brand"><img src="images/mike.jpg" alt="Mike's photo"></div>
+            </a>
+            <div class="brand-name">Michael Bassey</div>
+        </div>
+        <nav class="main-nav">
+            <div class="nav-menu">
+                <ul class="main-nav__items">
+                    <li class="main-nav__item"><a href="#home">Home</a></li>
+                    <li class="main-nav__item"><a href="#projects">Projects</a></li>
+                    <li class="main-nav__item"><a href="#about">About me</a></li>
+                    <li class="main-nav__item"><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
             <button class="nav-toggle" aria-label="Navigation Toggle Button">
                 <span class="icon"></span>
                 <span class="icon"></span>
                 <span class="icon"></span>
             </button>
-            <div class="nav-menu">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">About me</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <!-- <div class="nav-menu-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div> -->
         </nav>
     </header>
-    <section>
-        <p>This is the first section</p>
-    </section>
-    <section>
-        <p>This is the second section</p>
-    </section>
-    <footer>
-        <p>This is the beginning of footer</p>
+    <main>
+        <section id="home">
+            <h1 class="section-title">Select your plan</h1>
+            <article class="plan">
+                <h1>FREE</h1>
+                <h2>$0/Month</h2>
+                <h3>For beginners</h3>
+                <ul class=" plan__features">
+                    <li class="plan__feature">10 pairs only</li>
+                    <li class="plan__feature">Only 5 signals daily</li>
+                    <li class="plan__feature">60% accuracy</li>
+                </ul>
+                <div>
+                    <button>Choose Plan</button>
+                </div>
+            </article>
+            <article class="plan paln--highlighted">
+                <h1 class="plan__annotation">RECOMMENDED</h1>
+                <h2>$30</h2>
+                <h3>For experts</h3>
+                <ul class=" plan__features">
+                    <li class="plan__feature">50 Pairs</li>
+                    <li class="plan__feature">Better trader</li>
+                    <li class="plan__feature">60% accuracy</li>
+                    <li class="plan__feature">Fast execution</li>
+                </ul>
+                <div>
+                    <button>Choose Plan</button>
+                </div>
+            </article>
+            <article class="plan">
+                <h1>PRENIUM</h1>
+                <h2>$99</h2>
+                <h3>for professionals</h3>
+                <ul class=" plan__features">
+                    <li class="plan__feature">10 pairs only</li>
+                    <li class="plan__feature">Only 5 signals daily</li>
+                    <li class="plan__feature">60% accuracy</li>
+                </ul>
+                <div>
+                    <button>Choose Plan</button>
+                </div>
+            </article>
+        </section>
+        <section id="projects">
+            <p>Project section to be worked on</p>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link"><a href="www.https//:linkedin.com">Linkedin</a></li>
+                <li class="main-footer__link"><a href="www.https//:x.com">Twitter</a></li>
+            </ul>
+        </nav>
     </footer>
     <script src="scripts.js"></script>
 </body>

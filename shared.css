@@ -1,0 +1,216 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+        font-family: sans-serif;
+        width: 100%;
+        margin: 0;
+}
+
+.main-header {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 0.5rem;
+}
+
+.brand-container {
+    display: flex;
+    align-items:center;
+    cursor: pointer;
+}
+
+.brand-container a{
+    display: inline;
+    align-items:center;
+    cursor: pointer;
+}
+
+.brand-container__items {
+    display: inline;
+}
+
+.brand-name:hover {
+ color: #7843E9;
+}
+
+.main-nav {
+    margin-left: auto;
+}
+
+.nav-brand img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+}
+
+.brand-name {
+    /* display: flex; */
+    font-size: 1.0rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding-left: 10px;
+}
+
+.nav-toggle {
+    display: block; /* Show on smaller screens */
+    /* position: relative; */
+    cursor: pointer;
+    background: none;
+    border: solid 1px rgb(196, 183, 183);
+    border-radius: 40%;
+    margin: 0rem;
+    padding: 3px;
+}
+
+.icon, .nav-menu-icon span { /* Style the "hamburger" icon */
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333; /* Example color */
+    margin: 5px 0;
+    border-radius: 20%;
+}
+
+.nav-menu {
+    display: none; /* Hide by default on smaller screens */
+    flex-direction: column; /* Stack menu items vertically */
+    position: absolute;  /* Needed for positioning */
+    top: 60px; /* Adjust as needed */
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0; /* Match header background */
+    /* padding-left: 50%; */
+    text-align: center; /* Center text within the menu */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a subtle shadow */
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    padding: 10px 0; /* Add some vertical padding */
+    border-bottom: 1px solid #ddd; /* Add a separator line */
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block; /* Make links fill the list item width */
+}
+.nav-menu a:hover,
+.nav-menu a:active {
+    color: #7843E9;
+}
+
+.nav-menu a:hover{
+    background-color: #ddd;
+    }
+    
+    .nav-menu.active { /* Show the menu when active */
+    display: flex;
+}
+
+/* Hide the default hamburger icon on larger screens*/
+.nav-menu-icon {
+    display: none;
+}
+
+/* Hide the default hamburger icon on larger screens*/
+.nav-menu-icon {
+    display: none;
+}
+
+button {
+    background-color: #03270e;
+    color: #f0f0f0;
+    cursor: pointer;
+    font: inherit;
+    border: #03270e;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+button:hover,
+button:active {
+    background-color: #f0f0f0;
+    color: #03270e;
+    outline: none;
+}
+
+
+.main-footer{
+    background-color: #242323;
+    padding: 32px;
+    margin-top: 48px;
+    color: white;
+    
+    text-align: center;
+}
+
+.main-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.main-footer__link {
+    display: inline-block;
+    margin: 0 16px;
+}
+
+.main-footer__link a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-footer__link a:hover,
+.main-footer__link a:active {
+    color: #ccc;
+}
+
+/* Show the menu inline on larger screens */
+@media (min-width: 40rem) { /* Adjust breakpoint as needed */
+    .nav-toggle {
+        display: none;
+    }
+    
+    .nav-menu {
+        display: flex;
+        flex-direction: row; /* Arrange items horizontally */
+        position: static; /* Remove absolute positioning */
+        top: auto;
+        left: auto;
+        width: auto;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .nav-menu li{
+        border-bottom: none;
+    }
+    
+    .nav-menu ul {
+        display: flex; /* Make list items arrange horizontally */
+    }
+    
+    .nav-menu li {
+        padding: 0 15px; /* Add horizontal padding */
+    }
+    .nav-menu a{
+        display: inline;
+        padding: 10px;
+    }
+    .nav-menu-icon {
+        display: block;
+    }
+}
