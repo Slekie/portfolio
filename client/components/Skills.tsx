@@ -1,48 +1,30 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const skillCategories = [
   {
     label: "Frontend",
-    color: "indigo",
+    color: { light: "#4f46e5", dark: "#818cf8", bg: "rgba(99,102,241,0.08)", border: "rgba(99,102,241,0.2)" },
     skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js"],
   },
   {
     label: "Backend",
-    color: "violet",
+    color: { light: "#7c3aed", dark: "#a78bfa", bg: "rgba(139,92,246,0.08)", border: "rgba(139,92,246,0.2)" },
     skills: ["Node.js", "Express.js", "REST APIs", "PostgreSQL", "MongoDB"],
   },
   {
     label: "ML / AI",
-    color: "cyan",
+    color: { light: "#0e7490", dark: "#22d3ee", bg: "rgba(6,182,212,0.08)", border: "rgba(6,182,212,0.2)" },
     skills: ["Python", "Machine Learning", "Deep Learning", "Data Analysis", "AI Systems"],
   },
   {
     label: "Tools & DevOps",
-    color: "emerald",
+    color: { light: "#059669", dark: "#34d399", bg: "rgba(16,185,129,0.08)", border: "rgba(16,185,129,0.2)" },
     skills: ["Git", "GitHub", "VS Code", "Vercel", "Docker (learning)"],
   },
 ];
-
-const colorMap: Record<string, string> = {
-  indigo:
-    "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20 hover:bg-indigo-500/20",
-  violet:
-    "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20 hover:bg-violet-500/20",
-  cyan: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20 hover:bg-cyan-500/20",
-  emerald:
-    "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20",
-};
-
-const headerColorMap: Record<string, string> = {
-  indigo: "text-indigo-400",
-  violet: "text-violet-400",
-  cyan: "text-cyan-400",
-  emerald: "text-emerald-400",
-};
 
 export default function Skills() {
   const ref = useRef(null);
@@ -60,10 +42,8 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-center mb-14">
-            <p className="text-indigo-400 font-mono text-sm font-medium mb-3 tracking-wider">
-              02. SKILLS
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold">
+            <p className="section-label mb-3 tracking-wider block">02. SKILLS</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
               Technologies I work with
             </h2>
           </div>
@@ -78,7 +58,8 @@ export default function Skills() {
                 className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-indigo-500/40 transition-all"
               >
                 <h3
-                  className={`font-mono text-xs font-bold uppercase tracking-widest mb-4 ${headerColorMap[cat.color]}`}
+                  className="font-mono text-xs font-bold uppercase tracking-widest mb-4"
+                  style={{ color: cat.color.light }}
                 >
                   {cat.label}
                 </h3>
@@ -86,7 +67,12 @@ export default function Skills() {
                   {cat.skills.map((skill) => (
                     <span
                       key={skill}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-medium border cursor-default transition-colors ${colorMap[cat.color]}`}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium border cursor-default transition-colors"
+                      style={{
+                        background: cat.color.bg,
+                        borderColor: cat.color.border,
+                        color: cat.color.light,
+                      }}
                     >
                       {skill}
                     </span>

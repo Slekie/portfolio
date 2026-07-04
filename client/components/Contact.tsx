@@ -71,13 +71,13 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-center mb-14">
-            <p className="text-indigo-400 font-mono text-sm font-medium mb-3 tracking-wider">
+            <p className="section-label mb-3 tracking-wider block">
               04. CONTACT
             </p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Let&apos;s work together
             </h2>
-            <p className="text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
+            <p className="text-zinc-600 dark:text-zinc-400 max-w-md mx-auto">
               I&apos;m currently open to Full-Stack and ML/AI opportunities. Have a
               project or role in mind? Let&apos;s talk.
             </p>
@@ -87,7 +87,7 @@ export default function Contact() {
             {/* Contact info */}
             <div className="space-y-6">
               <div>
-                <h3 className="font-semibold text-lg mb-4">Get in touch</h3>
+                <h3 className="font-semibold text-lg mb-4 text-zinc-900 dark:text-white">Get in touch</h3>
                 <div className="space-y-4">
                   <a
                     href="mailto:michaelbazze@gmail.com"
@@ -97,8 +97,8 @@ export default function Contact() {
                       <Mail size={18} />
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-400 font-medium">Email</p>
-                      <p className="text-sm text-zinc-700 dark:text-zinc-300">
+                      <p className="text-xs text-zinc-500 font-medium">Email</p>
+                      <p className="text-sm text-zinc-800 dark:text-zinc-300">
                         michaelbazze@gmail.com
                       </p>
                     </div>
@@ -114,8 +114,8 @@ export default function Contact() {
                       <LinkedInIcon />
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-400 font-medium">LinkedIn</p>
-                      <p className="text-sm text-zinc-700 dark:text-zinc-300">
+                      <p className="text-xs text-zinc-500 font-medium">LinkedIn</p>
+                      <p className="text-sm text-zinc-800 dark:text-zinc-300">
                         linkedin.com/in/michaelbassey
                       </p>
                     </div>
@@ -131,8 +131,8 @@ export default function Contact() {
                       <GitHubIcon />
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-400 font-medium">GitHub</p>
-                      <p className="text-sm text-zinc-700 dark:text-zinc-300">
+                      <p className="text-xs text-zinc-500 font-medium">GitHub</p>
+                      <p className="text-sm text-zinc-800 dark:text-zinc-300">
                         github.com/Slekie
                       </p>
                     </div>
@@ -143,7 +143,7 @@ export default function Contact() {
 
             {/* Contact form */}
             <div>
-              <h3 className="font-semibold text-lg mb-4">Send a message</h3>
+              <h3 className="font-semibold text-lg mb-4 text-zinc-900 dark:text-white">Send a message</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5">

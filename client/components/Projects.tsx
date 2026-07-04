@@ -1,10 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink } from "lucide-react";
-import { Bot, Car, Globe } from "lucide-react";
+import { ExternalLink, Bot, Car, Globe } from "lucide-react";
 
 const GitHubIcon = ({ size = 14 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -12,16 +10,21 @@ const GitHubIcon = ({ size = 14 }: { size?: number }) => (
   </svg>
 );
 
+const colors = {
+  indigo: { accent: "#4f46e5", bg: "rgba(99,102,241,0.08)", border: "rgba(99,102,241,0.25)", borderHover: "rgba(99,102,241,0.6)" },
+  violet: { accent: "#7c3aed", bg: "rgba(139,92,246,0.08)", border: "rgba(139,92,246,0.25)", borderHover: "rgba(139,92,246,0.6)" },
+  cyan:   { accent: "#0e7490", bg: "rgba(6,182,212,0.08)",  border: "rgba(6,182,212,0.25)",  borderHover: "rgba(6,182,212,0.6)"  },
+};
+
 const projects = [
   {
     id: 1,
     title: "Saita",
     tagline: "AI Trading Robot",
-    description:
-      "An intelligent trading robot for synthetic indices and currency pairs. Features automated trade execution, risk management algorithms, real-time market analysis, and a cross-platform mobile and web interface.",
+    description: "An intelligent trading robot for synthetic indices and currency pairs. Features automated trade execution, risk management algorithms, real-time market analysis, and a cross-platform mobile and web interface.",
     tech: ["Python", "Machine Learning", "React Native", "Next.js", "Node.js", "WebSocket"],
     icon: <Bot size={24} />,
-    color: "indigo",
+    color: "indigo" as const,
     status: "In Development",
     github: "https://github.com/Slekie",
     live: null,
@@ -30,11 +33,10 @@ const projects = [
     id: 2,
     title: "Careal",
     tagline: "Car License Platform",
-    description:
-      "A full-stack platform that streamlines car license renewal and registration. Digitizes the entire process with document uploads, payment integration, status tracking, and government portal connectivity.",
+    description: "A full-stack platform that streamlines car license renewal and registration. Digitizes the entire process with document uploads, payment integration, status tracking, and government portal connectivity.",
     tech: ["Next.js", "Node.js", "Express", "PostgreSQL", "TypeScript", "REST API"],
     icon: <Car size={24} />,
-    color: "violet",
+    color: "violet" as const,
     status: "In Development",
     github: "https://github.com/Slekie",
     live: null,
@@ -43,37 +45,15 @@ const projects = [
     id: 3,
     title: "This Portfolio",
     tagline: "Personal Portfolio Site",
-    description:
-      "A professional full-stack portfolio built with Next.js 16, TypeScript, Tailwind CSS 4, and Framer Motion. Features dark/light theme toggle, animated sections, resume download, and admin login system.",
+    description: "A professional full-stack portfolio built with Next.js 16, TypeScript, Tailwind CSS 4, and Framer Motion. Features dark/light theme toggle, animated sections, resume download, and admin login system.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Node.js"],
     icon: <Globe size={24} />,
-    color: "cyan",
+    color: "cyan" as const,
     status: "Live",
     github: "https://github.com/Slekie",
     live: "#",
   },
 ];
-
-const colorMap: Record<string, { bg: string; text: string; border: string; badge: string }> = {
-  indigo: {
-    bg: "bg-indigo-500/10",
-    text: "text-indigo-400",
-    border: "border-indigo-500/30 group-hover:border-indigo-500/60",
-    badge: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
-  },
-  violet: {
-    bg: "bg-violet-500/10",
-    text: "text-violet-400",
-    border: "border-violet-500/30 group-hover:border-violet-500/60",
-    badge: "bg-violet-500/10 text-violet-400 border-violet-500/20",
-  },
-  cyan: {
-    bg: "bg-cyan-500/10",
-    text: "text-cyan-400",
-    border: "border-cyan-500/30 group-hover:border-cyan-500/60",
-    badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-  },
-};
 
 export default function Projects() {
   const ref = useRef(null);
@@ -91,45 +71,45 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-center mb-14">
-            <p className="text-indigo-400 font-mono text-sm font-medium mb-3 tracking-wider">
-              03. PROJECTS
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold">
+            <p className="section-label mb-3 tracking-wider block">03. PROJECTS</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
               Things I&apos;ve built
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, i) => {
-              const c = colorMap[project.color];
+              const c = colors[project.color];
               return (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: i * 0.15 }}
-                  className={`group relative flex flex-col p-6 rounded-2xl border bg-white dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1 ${c.border}`}
+                  className="group relative flex flex-col p-6 rounded-2xl border bg-white dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1"
+                  style={{ borderColor: c.border }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = c.borderHover)}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = c.border)}
                 >
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div
-                      className={`w-12 h-12 rounded-xl ${c.bg} ${c.text} flex items-center justify-center`}
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
+                      style={{ background: c.bg, color: c.accent }}
                     >
                       {project.icon}
                     </div>
                     <span
-                      className={`px-2.5 py-1 rounded-full text-xs font-medium border ${c.badge}`}
+                      className="px-2.5 py-1 rounded-full text-xs font-medium border"
+                      style={{ background: c.bg, color: c.accent, borderColor: c.border }}
                     >
                       {project.status}
                     </span>
                   </div>
 
-                  {/* Content */}
-                  <h3 className="text-lg font-bold mb-1">{project.title}</h3>
-                  <p className={`text-sm font-medium mb-3 ${c.text}`}>
-                    {project.tagline}
-                  </p>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5 flex-1">
+                  <h3 className="text-lg font-bold mb-1 text-zinc-900 dark:text-white">{project.title}</h3>
+                  <p className="text-sm font-medium mb-3" style={{ color: c.accent }}>{project.tagline}</p>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-5 flex-1">
                     {project.description}
                   </p>
 
@@ -138,7 +118,7 @@ export default function Projects() {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="px-2 py-0.5 rounded text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-mono"
+                        className="px-2 py-0.5 rounded text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-400 font-mono"
                       >
                         {t}
                       </span>
@@ -153,7 +133,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${project.title} GitHub`}
-                        className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-indigo-400 transition-colors"
+                        className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                       >
                         <GitHubIcon size={14} />
                         Code
@@ -165,7 +145,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${project.title} live demo`}
-                        className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-indigo-400 transition-colors"
+                        className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                       >
                         <ExternalLink size={14} />
                         Live Demo
@@ -188,7 +168,7 @@ export default function Projects() {
               href="https://github.com/Slekie"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 text-sm font-medium hover:border-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400 transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-400 text-sm font-medium hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all hover:-translate-y-0.5"
             >
               <GitHubIcon size={16} />
               More on GitHub

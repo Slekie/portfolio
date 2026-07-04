@@ -29,7 +29,7 @@ export default function Footer() {
           </span>
         </div>
 
-        <p className="text-xs text-zinc-400 text-center">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center">
           © {year} Michael Bassey. Built with Next.js &amp; Tailwind CSS.
         </p>
 
@@ -39,7 +39,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="p-2 rounded-lg text-zinc-400 hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
+            className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
           >
             <GitHubIcon />
           </a>
@@ -48,14 +48,14 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="p-2 rounded-lg text-zinc-400 hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
+            className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
           >
             <LinkedInIcon />
           </a>
           <a
             href="mailto:michaelbazze@gmail.com"
             aria-label="Email"
-            className="p-2 rounded-lg text-zinc-400 hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
+            className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
           >
             <Mail size={16} />
           </a>

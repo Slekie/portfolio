@@ -42,7 +42,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
           Open to Full-Stack & ML/AI Roles
@@ -64,10 +64,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl md:text-2xl font-medium text-zinc-600 dark:text-zinc-300 mb-6"
+          className="text-xl md:text-2xl font-medium text-zinc-700 dark:text-zinc-300 mb-6"
         >
           Full-Stack Software Engineer{" "}
-          <span className="text-indigo-400">&amp;</span> ML/AI Developer
+          <span className="text-indigo-600 dark:text-indigo-400">&amp;</span> ML/AI Developer
         </motion.p>
 
         {/* Description */}
@@ -75,7 +75,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-2xl mx-auto text-base md:text-lg text-zinc-500 dark:text-zinc-400 mb-10 leading-relaxed"
+          className="max-w-2xl mx-auto text-base md:text-lg text-zinc-600 dark:text-zinc-400 mb-10 leading-relaxed"
         >
           I build performant web applications and intelligent systems — from
           React &amp; Next.js frontends to Python ML pipelines and Node.js
@@ -99,7 +99,7 @@ export default function Hero() {
           <a
             href="/resume.pdf"
             download="Michael_Bassey_Resume.pdf"
-            className="px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-semibold text-sm hover:border-indigo-500 hover:text-indigo-500 dark:hover:border-indigo-400 dark:hover:text-indigo-400 transition-all hover:-translate-y-0.5"
+            className="px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-300 font-semibold text-sm hover:border-indigo-500 hover:text-indigo-600 dark:hover:border-indigo-400 dark:hover:text-indigo-400 transition-all hover:-translate-y-0.5"
           >
             Download Resume
           </a>
@@ -146,7 +146,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-400 hover:text-indigo-400 transition-colors"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
         aria-label="Scroll to about section"
       >
         <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>

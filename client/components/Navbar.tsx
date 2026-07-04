@@ -65,7 +65,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
+                className="text-sm font-medium text-zinc-700 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
                 {link.label}
               </a>
@@ -91,7 +91,7 @@ export default function Navbar() {
                 <div className="hidden md:flex items-center gap-2">
                   <button
                     onClick={() => router.push("/dashboard")}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-sm font-medium transition-all"
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-sm font-medium transition-all"
                   >
                     <LayoutDashboard size={16} />
                     {user?.name?.split(" ")[0]}
@@ -106,7 +106,7 @@ export default function Navbar() {
               ) : (
                 <button
                   onClick={() => setAuthOpen(true)}
-                  className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-sm font-medium transition-all"
+                  className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-sm font-medium transition-all"
                 >
                   <LogIn size={16} />
                   Login
@@ -149,7 +149,7 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 transition-colors py-1"
+                    className="text-sm font-medium text-zinc-700 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors py-1"
                   >
                     {link.label}
                   </a>

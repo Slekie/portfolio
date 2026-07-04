@@ -55,8 +55,58 @@ html {
   box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
-/* Section divider */
+/* Section divider — visible in both light and dark */
 .section-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, #6366f1, transparent);
+  opacity: 0.5;
+}
+
+.dark .section-divider {
+  opacity: 0.9;
+}
+
+/* ─── Light mode explicit overrides ─────────────────────────────────
+   Tailwind v4 tree-shakes dynamic class strings in colorMaps.
+   These rules guarantee correct colors in light mode without
+   relying on Tailwind scanning JS object values.
+──────────────────────────────────────────────────────────────────── */
+
+/* Skill / project badge pill text colors in light mode */
+.badge-indigo  { color: #4f46e5; }   /* indigo-600  */
+.badge-violet  { color: #7c3aed; }   /* violet-600  */
+.badge-cyan    { color: #0e7490; }   /* cyan-700    */
+.badge-emerald { color: #059669; }   /* emerald-600 */
+
+/* Section mono labels */
+.section-label {
+  color: #4f46e5;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.dark .section-label {
+  color: #818cf8; /* indigo-400 */
+}
+
+/* Card body text in light mode */
+.card-body {
+  color: #52525b; /* zinc-600 */
+}
+
+/* Ensure nav links are dark enough on white */
+.nav-link {
+  color: #3f3f46; /* zinc-700 */
+}
+.nav-link:hover {
+  color: #4f46e5; /* indigo-600 */
+}
+
+.dark .nav-link {
+  color: #a1a1aa; /* zinc-400 */
+}
+.dark .nav-link:hover {
+  color: #818cf8; /* indigo-400 */
 }

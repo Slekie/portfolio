@@ -46,14 +46,14 @@ export default function About() {
         >
           {/* Text */}
           <div>
-            <p className="text-indigo-400 font-mono text-sm font-medium mb-3 tracking-wider">
+            <p className="section-label mb-3 tracking-wider block">
               01. ABOUT ME
             </p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Building at the intersection of{" "}
               <span className="gradient-text">software &amp; intelligence</span>
             </h2>
-            <div className="space-y-4 text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            <div className="space-y-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
               <p>
                 I&apos;m Michael Bassey, a Full-Stack Software Engineer and ML/AI
                 Developer passionate about building systems that are both
@@ -83,15 +83,15 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 hover:border-indigo-500/50 transition-all group"
+                className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-indigo-500/50 hover:shadow-md transition-all group"
               >
                 <div className="mb-3 w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center group-hover:scale-110 transition-transform">
                   {item.icon}
                 </div>
-                <h3 className="font-semibold text-sm mb-1 text-zinc-800 dark:text-zinc-200">
+                <h3 className="font-semibold text-sm mb-1 text-zinc-900 dark:text-zinc-200">
                   {item.title}
                 </h3>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
                   {item.desc}
                 </p>
               </motion.div>
