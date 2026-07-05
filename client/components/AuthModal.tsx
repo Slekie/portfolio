@@ -32,10 +32,15 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setStatus("loading");
     setErrorMsg("");
 
-    const endpoint =
-      mode === "login"
-        ? `${API_URL}/api/auth/login`
-        : `${API_URL}/api/auth/register`;
+    // const endpoint =
+    //   mode === "login"
+    //     ? `${API_URL}/api/auth/login`
+    //     : `${API_URL}/api/auth/register`;
+    
+  const endpoint =
+    mode === "login"
+      ? `/api/auth/login`
+      : `/api/auth/register`;
 
     try {
       const res = await fetch(endpoint, {
