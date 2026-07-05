@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Eye, EyeOff, LogIn, UserPlus, Lock } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://portfolio-st9i.onrender.com";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -32,15 +32,11 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setStatus("loading");
     setErrorMsg("");
 
-    // const endpoint =
-    //   mode === "login"
-    //     ? `${API_URL}/api/auth/login`
-    //     : `${API_URL}/api/auth/register`;
+    const endpoint =
+      mode === "login"
+        ? `${API_URL}/api/auth/login`
+        : `${API_URL}/api/auth/register`;
     
-  const endpoint =
-    mode === "login"
-      ? `/api/auth/login`
-      : `/api/auth/register`;
 
     try {
       const res = await fetch(endpoint, {
