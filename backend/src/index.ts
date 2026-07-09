@@ -2,8 +2,8 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import authRoutes from "./routes/auth";
-import contactRoutes from "./routes/contact";
+import authRoutes from "./routes/auth.js";
+import contactRoutes from "./routes/contact.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
