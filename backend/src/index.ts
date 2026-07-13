@@ -1,4 +1,3 @@
-// index.ts
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
@@ -8,28 +7,25 @@ import contactRoutes from "./routes/contact.js";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// Convert the environment string into a real array for validation
-const rawOrigin = process.env.CLIENT_URL || 'http://localhost:3000';
-const allowedOrigins = rawOrigin.split(",").map(url => url.trim());
+// Allowed origins — add your Vercel URL to CLIENT_URL env var
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  process.env.CLIENT_URL,
+].filter(Boolean) as string[];
 
 // Middleware
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (like curl, Postman, or Render background monitoring)
+    // Allow requests with no origin (e.g. curl, Render health checks)
     if (!origin) return callback(null, true);
-    
-    // Now .some() works perfectly because allowedOrigins is a valid Array
-    const isAllowed = allowedOrigins.some(o => origin === o) || origin.endsWith(".vercel.app");
-    
-    if (isAllowed) {
+    if (allowedOrigins.some(o => origin === o || origin.endsWith(".vercel.app"))) {
       return callback(null, true);
     }
-    
     callback(new Error(`CORS blocked: ${origin}`));
   },
   credentials: true,
 }));
-
 app.use(express.json());
 
 // Health check

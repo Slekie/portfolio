@@ -10,7 +10,7 @@ import {
   ExternalLink, Download, Eye, CheckCircle, Clock,
 } from "lucide-react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://portfolio-st9i.onrender.com";
 
 interface Message {
   id: string;
