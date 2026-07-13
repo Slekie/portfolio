@@ -30,7 +30,7 @@ export default function Footer() {
         </div>
 
         <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center">
-          © {year} Michael Bassey. Built with Next.js &amp; Tailwind CSS.
+          © {year} {" "}Michael Bassey. Built with Next.js &amp; Tailwind CSS.
         </p>
 
         <div className="flex items-center gap-3">

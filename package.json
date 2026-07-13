@@ -1,15 +1,24 @@
 {
-  "name": "portfolio",
+  "name": "portfolio-monorepo",
   "version": "1.0.0",
   "private": true,
+  "type": "commonjs",
   "scripts": {
-    "dev": "concurrently --kill-others-on-fail --names \"client,server\" --prefix-colors \"cyan,magenta\" \"npm run dev --prefix client\" \"npm run dev --prefix backend\"",
+    "dev": "concurrently --kill-others-on-fail --names \"client,backend\" --prefix-colors \"cyan,magenta\" \"npm run dev --prefix client\" \"npm run dev --prefix backend\"",
     "build": "npm run build --prefix client",
     "client": "npm run dev --prefix client",
-    "server": "npm run dev --prefix backend",
+    "backend": "npm run dev --prefix backend",
     "install:all": "npm install --prefix client && npm install --prefix backend"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
-  }
+    "concurrently": "^9.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slekie/portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slekie/portfolio/issues"
+  },
+  "homepage": "https://github.com/slekie/portfolio#readme"
 }

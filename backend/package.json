@@ -4,7 +4,7 @@
   "description": "Backend API for Michael Bassey's portfolio",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "prisma generate && tsx watch src/index.ts",
     "build": "prisma generate && tsc",
     "start": "node dist/index.js",
     "db:generate": "prisma generate",

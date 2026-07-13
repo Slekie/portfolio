@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useTheme } from "next-themes";
-import { Moon, Sun, Menu, X, Code2, LogIn, LogOut, LayoutDashboard } from "lucide-react";
+import { Moon, Sun, Menu, X, LogIn, LogOut, LayoutDashboard } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import AuthModal from "./AuthModal";
@@ -51,9 +52,14 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center group-hover:bg-indigo-500 transition-colors">
-              <Code2 size={16} className="text-white" />
-            </div>
+            <Image
+              src="/Slick_logo.png"
+              alt="Michael Bassey logo"
+              width={36}
+              height={36}
+              className="rounded-lg object-contain"
+              priority
+            />
             <span className="font-bold text-lg tracking-tight">
               Michael<span className="text-indigo-500">.</span>
             </span>

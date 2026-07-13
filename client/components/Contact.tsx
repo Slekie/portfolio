@@ -77,7 +77,7 @@ export default function Contact() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Let&apos;s work together
             </h2>
-            <p className="text-zinc-600 dark:text-zinc-400 max-w-md mx-auto">
+            <p className="text-zinc-800 dark:text-zinc-200 max-w-md mx-auto">
               I&apos;m currently open to Full-Stack and ML/AI opportunities. Have a
               project or role in mind? Let&apos;s talk.
             </p>
@@ -215,7 +215,7 @@ export default function Contact() {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center gap-2 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-sm"
+                    className="flex items-center gap-2 p-3 rounded-xl bg-emerald-500 border border-emerald-600 text-white text-sm"
                   >
                     <CheckCircle size={16} />
                     Message sent! I&apos;ll get back to you soon.

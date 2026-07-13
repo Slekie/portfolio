@@ -7,7 +7,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useTheme } from "next-themes";
 import {
   LogOut, Sun, Moon, Code2, User, Mail, MessageSquare,
-  ExternalLink, Download, Eye, CheckCircle, Clock,
+  ExternalLink, Download, Eye, CheckCircle, Clock, Users,
 } from "lucide-react";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://portfolio-st9i.onrender.com";
@@ -21,6 +21,12 @@ interface Message {
   createdAt: string;
 }
 
+interface VisitorStats {
+  total: number;
+  today: number;
+  thisWeek: number;
+}
+
 export default function Dashboard() {
   const { user, token, logout, isLoggedIn } = useAuth();
   const router = useRouter();
@@ -29,6 +35,7 @@ export default function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activeTab, setActiveTab] = useState<"overview" | "messages">("overview");
+  const [visitors, setVisitors] = useState<VisitorStats | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -48,6 +55,13 @@ export default function Dashboard() {
     }
   }, [isLoggedIn, user, token, activeTab]);
 
+  // Load visitor stats when on overview tab
+  useEffect(() => {
+    if (isLoggedIn && token && activeTab === "overview") {
+      fetchVisitors();
+    }
+  }, [isLoggedIn, token, activeTab]);
+
   const fetchMessages = async () => {
     setLoadingMessages(true);
     try {
@@ -62,6 +76,20 @@ export default function Dashboard() {
       // silently fail
     } finally {
       setLoadingMessages(false);
+    }
+  };
+
+  const fetchVisitors = async () => {
+    try {
+      const res = await fetch(`${API_URL}/api/visitors`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setVisitors(data);
+      }
+    } catch {
+      // silently fail
     }
   };
 
@@ -199,7 +227,7 @@ export default function Dashboard() {
 
         {/* Page body */}
         <main className="flex-1 p-8">
-          {activeTab === "overview" && <OverviewTab user={user} />}
+          {activeTab === "overview" && <OverviewTab user={user} visitors={visitors} />}
           {activeTab === "messages" && (
             <MessagesTab
               messages={messages}
@@ -215,7 +243,10 @@ export default function Dashboard() {
 }
 
 /* ─── Overview Tab ─── */
-function OverviewTab({ user }: { user: { name: string; email: string; role: string } | null }) {
+function OverviewTab({ user, visitors }: {
+  user: { name: string; email: string; role: string } | null;
+  visitors: VisitorStats | null;
+}) {
   const stats = [
     { label: "Projects Built", value: "3", icon: <Code2 size={20} />, color: "indigo" },
     { label: "Skills", value: "10+", icon: <User size={20} />, color: "violet" },
@@ -243,6 +274,28 @@ function OverviewTab({ user }: { user: { name: string; email: string; role: stri
             <Mail size={13} />
             {user?.email}
           </p>
+        </div>
+      </div>
+
+      {/* Visitor stats card */}
+      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 mb-8">
+        <div className="flex items-center gap-2 mb-5">
+          <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-500">
+            <Users size={16} />
+          </div>
+          <h3 className="font-semibold text-sm text-zinc-900 dark:text-white">Portfolio Visitors</h3>
+        </div>
+        <div className="grid grid-cols-3 gap-4">
+          {[
+            { label: "Total Visitors", value: visitors?.total ?? "—" },
+            { label: "Today",          value: visitors?.today    ?? "—" },
+            { label: "This Week",      value: visitors?.thisWeek ?? "—" },
+          ].map((v) => (
+            <div key={v.label} className="text-center p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800">
+              <p className="text-2xl font-bold text-zinc-900 dark:text-white">{v.value}</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{v.label}</p>
+            </div>
+          ))}
         </div>
       </div>
 
