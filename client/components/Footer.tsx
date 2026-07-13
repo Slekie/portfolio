@@ -1,6 +1,7 @@
 "use client";
 
-import { Mail, Code2 } from "lucide-react";
+import Image from "next/image";
+import { Mail } from "lucide-react";
 
 const GitHubIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -21,9 +22,13 @@ export default function Footer() {
     <footer className="border-t border-zinc-200 dark:border-zinc-800 py-10 px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center">
-            <Code2 size={14} className="text-white" />
-          </div>
+          <Image
+            src="/Slick_logo.png"
+            alt="Michael Bassey logo"
+            width={30}
+            height={30}
+            className="rounded-lg object-contain"
+          />
           <span className="text-sm font-semibold">
             Michael Bassey<span className="text-indigo-500">.</span>
           </span>

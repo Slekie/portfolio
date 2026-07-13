@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { useTheme } from "next-themes";
 import {
   LogOut, Sun, Moon, Code2, User, Mail, MessageSquare,
-  ExternalLink, Download, Eye, CheckCircle, Clock, Users,
+  ExternalLink, Download, Eye, CheckCircle, Clock, Users, Menu, X,
 } from "lucide-react";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://portfolio-st9i.onrender.com";
@@ -36,6 +37,7 @@ export default function Dashboard() {
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activeTab, setActiveTab] = useState<"overview" | "messages">("overview");
   const [visitors, setVisitors] = useState<VisitorStats | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -116,117 +118,161 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      {/* Sidebar */}
-      <div className="fixed inset-y-0 left-0 w-64 bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800 flex flex-col z-30">
-        {/* Logo */}
-        <div className="p-6 border-b border-zinc-200 dark:border-zinc-800">
-          <a href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
-              <Code2 size={16} className="text-white" />
-            </div>
-            <span className="font-bold text-base">
-              Michael<span className="text-indigo-500">.</span>
-            </span>
-          </a>
-        </div>
 
-        {/* Nav */}
-        <nav className="flex-1 p-4 space-y-1">
-          <button
-            onClick={() => setActiveTab("overview")}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-              activeTab === "overview"
-                ? "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
-                : "text-zinc-700 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200"
-            }`}
-          >
-            <User size={16} />
-            Overview
-          </button>
+      {/* ── Mobile sidebar backdrop ── */}
+      <AnimatePresence>
+        {sidebarOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSidebarOpen(false)}
+            className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+          />
+        )}
+      </AnimatePresence>
 
-          {user?.role === "ADMIN" && (
+      {/* ── Sidebar ── */}
+      <AnimatePresence>
+        <div className={`
+          fixed inset-y-0 left-0 w-64 bg-white dark:bg-zinc-900
+          border-r border-zinc-200 dark:border-zinc-800 flex flex-col z-50
+          transition-transform duration-300 ease-in-out
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+          md:translate-x-0
+        `}>
+          {/* Logo */}
+          <div className="p-5 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+            <a href="/" className="flex items-center gap-2">
+              <Image
+                src="/Slick_logo.png"
+                alt="Michael Bassey logo"
+                width={34}
+                height={34}
+                className="rounded-lg object-contain"
+              />
+              <span className="font-bold text-base text-zinc-900 dark:text-white">
+                Michael<span className="text-indigo-500">.</span>
+              </span>
+            </a>
+            {/* Close button — mobile only */}
             <button
-              onClick={() => setActiveTab("messages")}
+              onClick={() => setSidebarOpen(false)}
+              className="md:hidden p-1.5 rounded-lg text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
+              aria-label="Close sidebar"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          {/* Nav */}
+          <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+            <button
+              onClick={() => { setActiveTab("overview"); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                activeTab === "messages"
+                activeTab === "overview"
                   ? "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
                   : "text-zinc-700 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200"
               }`}
             >
-              <MessageSquare size={16} />
-              Messages
-              {unreadCount > 0 && (
-                <span className="ml-auto px-1.5 py-0.5 rounded-full bg-indigo-600 text-white text-xs font-bold">
-                  {unreadCount}
-                </span>
-              )}
+              <User size={16} />
+              Overview
             </button>
-          )}
 
-          <a
-            href="/"
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-zinc-700 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all"
-          >
-            <ExternalLink size={16} />
-            View Portfolio
-          </a>
+            {user?.role === "ADMIN" && (
+              <button
+                onClick={() => { setActiveTab("messages"); setSidebarOpen(false); }}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                  activeTab === "messages"
+                    ? "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
+                    : "text-zinc-700 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200"
+                }`}
+              >
+                <MessageSquare size={16} />
+                Messages
+                {unreadCount > 0 && (
+                  <span className="ml-auto px-1.5 py-0.5 rounded-full bg-indigo-600 text-white text-xs font-bold">
+                    {unreadCount}
+                  </span>
+                )}
+              </button>
+            )}
 
-          <a
-            href="/resume.pdf"
-            download="Michael_Bassey_Resume.pdf"
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-zinc-700 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all"
-          >
-            <Download size={16} />
-            Download Resume
-          </a>
-        </nav>
-
-        {/* Bottom */}
-        <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 space-y-2">
-          {mounted && (
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            <a
+              href="/"
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-zinc-700 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all"
             >
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-              {theme === "dark" ? "Light Mode" : "Dark Mode"}
-            </button>
-          )}
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-500 hover:bg-red-500/10 transition-all"
-          >
-            <LogOut size={16} />
-            Sign Out
-          </button>
-        </div>
-      </div>
+              <ExternalLink size={16} />
+              View Portfolio
+            </a>
 
-      {/* Main content */}
-      <div className="ml-64 flex flex-col min-h-screen">
-        {/* Top bar */}
-        <header className="sticky top-0 z-20 bg-white/80 dark:bg-zinc-950/80 backdrop-blur border-b border-zinc-200 dark:border-zinc-800 px-8 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-lg font-bold capitalize text-zinc-900 dark:text-white">{activeTab}</h1>
-            <p className="text-xs text-zinc-400">
-              {new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
-            </p>
+            <a
+              href="/resume.pdf"
+              download="Michael_Bassey_Resume.pdf"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-zinc-700 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all"
+            >
+              <Download size={16} />
+              Download Resume
+            </a>
+          </nav>
+
+          {/* Bottom */}
+          <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 space-y-2">
+            {mounted && (
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-zinc-700 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all"
+              >
+                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+                {theme === "dark" ? "Light Mode" : "Dark Mode"}
+              </button>
+            )}
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-500 hover:bg-red-500/10 transition-all"
+            >
+              <LogOut size={16} />
+              Sign Out
+            </button>
           </div>
+        </div>
+      </AnimatePresence>
+
+      {/* ── Main content ── */}
+      <div className="md:ml-64 flex flex-col min-h-screen">
+        {/* Top bar */}
+        <header className="sticky top-0 z-30 bg-white/90 dark:bg-zinc-950/90 backdrop-blur border-b border-zinc-200 dark:border-zinc-800 px-4 md:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800">
-              <div className="w-7 h-7 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs font-bold">
-                {user?.name?.[0]?.toUpperCase() ?? "U"}
-              </div>
-              <div>
-                <p className="text-xs font-semibold leading-none">{user?.name}</p>
-                <p className="text-xs text-zinc-400 capitalize">{user?.role?.toLowerCase()}</p>
-              </div>
+            {/* Hamburger — mobile only */}
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="md:hidden p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
+              aria-label="Open sidebar"
+            >
+              <Menu size={20} />
+            </button>
+            <div>
+              <h1 className="text-base md:text-lg font-bold capitalize text-zinc-900 dark:text-white">
+                {activeTab}
+              </h1>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 hidden sm:block">
+                {new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800">
+            <div className="w-7 h-7 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+              {user?.name?.[0]?.toUpperCase() ?? "U"}
+            </div>
+            <div className="hidden sm:block">
+              <p className="text-xs font-semibold leading-none text-zinc-900 dark:text-white">{user?.name}</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 capitalize">{user?.role?.toLowerCase()}</p>
             </div>
           </div>
         </header>
 
         {/* Page body */}
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 md:p-8">
           {activeTab === "overview" && <OverviewTab user={user} visitors={visitors} />}
           {activeTab === "messages" && (
             <MessagesTab

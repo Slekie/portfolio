@@ -64,10 +64,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl md:text-2xl font-medium text-zinc-900 dark:text-zinc-300 mb-6"
+          className="text-xl md:text-2xl font-medium mb-6"
+          style={{ color: "inherit" }}
         >
-          Full-Stack Software Engineer{" "}
-          <span className="text-indigo-600 dark:text-indigo-400">&amp;</span> ML/AI Developer
+          <span className="text-zinc-900 dark:text-zinc-300">Full-Stack Software Engineer{" "}</span>
+          <span className="text-indigo-600 dark:text-indigo-400">&amp;</span>
+          <span className="text-zinc-900 dark:text-zinc-300">{" "}ML/AI Developer</span>
         </motion.p>
 
         {/* Description */}
@@ -75,12 +77,15 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-2xl mx-auto text-base md:text-lg text-zinc-800 dark:text-zinc-400 mb-10 leading-relaxed"
+          className="max-w-2xl mx-auto text-base md:text-lg mb-10 leading-relaxed"
+          style={{ color: "#27272a" }}
         >
+          <span className="dark:text-zinc-400">
           I build performant web applications and intelligent systems — from
           React &amp; Next.js frontends to Python ML pipelines and Node.js
           backends. Passionate about turning ideas into production-ready
           products.
+          </span>
         </motion.p>
 
         {/* CTAs */}

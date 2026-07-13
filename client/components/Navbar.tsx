@@ -55,8 +55,8 @@ export default function Navbar() {
             <Image
               src="/Slick_logo.png"
               alt="Michael Bassey logo"
-              width={36}
-              height={36}
+              width={46}
+              height={46}
               className="rounded-lg object-contain"
               priority
             />
