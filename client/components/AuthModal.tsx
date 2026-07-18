@@ -60,7 +60,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       }
     } catch {
       setStatus("error");
-      setErrorMsg("Network error. Is the backend running?");
+      setErrorMsg("Network error. Please try again");
     }
   };
 
