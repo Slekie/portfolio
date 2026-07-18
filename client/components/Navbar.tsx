@@ -17,7 +17,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const { isLoggedIn, user, logout } = useAuth();
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
@@ -83,11 +83,11 @@ export default function Navbar() {
             {/* Theme toggle */}
             {mounted && (
               <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
                 className="p-2 rounded-lg text-zinc-500 hover:text-indigo-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
                 aria-label="Toggle theme"
               >
-                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                {resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
               </button>
             )}
 

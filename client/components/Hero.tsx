@@ -67,9 +67,9 @@ export default function Hero() {
           className="text-xl md:text-2xl font-medium mb-6"
           style={{ color: "inherit" }}
         >
-          <span className="text-zinc-900 dark:text-zinc-300">Full-Stack Software Engineer{" "}</span>
+          <span className="text-zinc-900 dark:text-zinc-800">Full-Stack Software Engineer{" "}</span>
           <span className="text-indigo-600 dark:text-indigo-400">&amp;</span>
-          <span className="text-zinc-900 dark:text-zinc-300">{" "}ML/AI Developer</span>
+          <span className="text-zinc-900 dark:text-zinc-800">{" "}ML/AI Developer</span>
         </motion.p>
 
         {/* Description */}
@@ -80,7 +80,7 @@ export default function Hero() {
           className="max-w-2xl mx-auto text-base md:text-lg mb-10 leading-relaxed"
           style={{ color: "#27272a" }}
         >
-          <span className="dark:text-zinc-400">
+          <span className="dark:text-zinc-900">
           I build performant web applications and intelligent systems — from
           React &amp; Next.js frontends to Python ML pipelines and Node.js
           backends. Passionate about turning ideas into production-ready

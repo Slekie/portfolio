@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.js";
 import contactRoutes from "./routes/contact.js";
+import visitorRoutes from "./routes/visitors.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -36,6 +37,7 @@ app.get("/health", (_req, res) => {
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/contact", contactRoutes);
+app.use("/api/visitors", visitorRoutes);
 
 // 404 handler
 app.use((_req, res) => {

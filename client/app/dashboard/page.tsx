@@ -5,9 +5,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
-import { useTheme } from "next-themes";
 import {
-  LogOut, Sun, Moon, Code2, User, Mail, MessageSquare,
+  LogOut, Code2, User, Mail, MessageSquare,
   ExternalLink, Download, Eye, CheckCircle, Clock, Users, Menu, X,
 } from "lucide-react";
 
@@ -31,7 +30,6 @@ interface VisitorStats {
 export default function Dashboard() {
   const { user, token, logout, isLoggedIn } = useAuth();
   const router = useRouter();
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
@@ -117,7 +115,7 @@ export default function Dashboard() {
   const unreadCount = messages.filter((m) => !m.read).length;
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+    <div className="dark min-h-screen bg-zinc-950 text-zinc-100">
 
       {/* ── Mobile sidebar backdrop ── */}
       <AnimatePresence>
@@ -132,15 +130,16 @@ export default function Dashboard() {
         )}
       </AnimatePresence>
 
-      {/* ── Sidebar ── */}
-      <AnimatePresence>
-        <div className={`
-          fixed inset-y-0 left-0 w-64 bg-white dark:bg-zinc-900
-          border-r border-zinc-200 dark:border-zinc-800 flex flex-col z-50
-          transition-transform duration-300 ease-in-out
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-          md:translate-x-0
-        `}>
+      {/* ── Sidebar — always mounted, shown/hidden via CSS transform ── */}
+      <div className={`
+        fixed inset-y-0 left-0 w-64
+        bg-white dark:bg-zinc-900
+        border-r border-zinc-200 dark:border-zinc-800
+        flex flex-col z-50
+        transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+        md:translate-x-0
+      `}>
           {/* Logo */}
           <div className="p-5 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
             <a href="/" className="flex items-center gap-2">
@@ -155,7 +154,6 @@ export default function Dashboard() {
                 Michael<span className="text-indigo-500">.</span>
               </span>
             </a>
-            {/* Close button — mobile only */}
             <button
               onClick={() => setSidebarOpen(false)}
               className="md:hidden p-1.5 rounded-lg text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
@@ -217,16 +215,7 @@ export default function Dashboard() {
           </nav>
 
           {/* Bottom */}
-          <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 space-y-2">
-            {mounted && (
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-zinc-700 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all"
-              >
-                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-                {theme === "dark" ? "Light Mode" : "Dark Mode"}
-              </button>
-            )}
+          <div className="p-4 border-t border-zinc-200 dark:border-zinc-800">
             <button
               onClick={handleLogout}
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-500 hover:bg-red-500/10 transition-all"
@@ -236,14 +225,12 @@ export default function Dashboard() {
             </button>
           </div>
         </div>
-      </AnimatePresence>
 
       {/* ── Main content ── */}
-      <div className="md:ml-64 flex flex-col min-h-screen">
+      <div className="md:ml-64 flex flex-col min-h-screen transition-colors duration-300">
         {/* Top bar */}
-        <header className="sticky top-0 z-30 bg-white/90 dark:bg-zinc-950/90 backdrop-blur border-b border-zinc-200 dark:border-zinc-800 px-4 md:px-8 py-4 flex items-center justify-between">
+        <header className="sticky top-0 z-30 bg-white/90 dark:bg-zinc-950/90 backdrop-blur border-b border-zinc-200 dark:border-zinc-800 px-4 md:px-8 py-4 flex items-center justify-between transition-colors duration-300">
           <div className="flex items-center gap-3">
-            {/* Hamburger — mobile only */}
             <button
               onClick={() => setSidebarOpen(true)}
               className="md:hidden p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
@@ -260,7 +247,7 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 transition-colors duration-300">
             <div className="w-7 h-7 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
               {user?.name?.[0]?.toUpperCase() ?? "U"}
             </div>
