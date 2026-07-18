@@ -72,7 +72,7 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
       const response = await resend.emails.send({
         from: "Portfolio Contact <onboarding@resend.dev>",
         to: [recipient],
-        reply_to: email,
+        replyTo: email,
         subject: `New message from ${name} — Portfolio`,
         html: buildEmailHtml(name, email, message),
       });
