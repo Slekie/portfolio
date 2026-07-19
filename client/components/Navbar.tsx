@@ -61,7 +61,7 @@ export default function Navbar() {
               priority
             />
             <span className="font-bold text-lg tracking-tight">
-              Michael<span className="text-indigo-500">.</span>
+              Michael<span className="text-indigo-500"></span>
             </span>
           </a>
 
